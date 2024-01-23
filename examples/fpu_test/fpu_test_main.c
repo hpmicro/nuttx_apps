@@ -44,7 +44,7 @@
 /****************************************************************************
  * fpu_test_main
  ****************************************************************************/
-static double cal_pai(void)
+static double cal_pi(void)
 {
   double r =0;
   double sum =0;
@@ -66,7 +66,7 @@ static int while1_entry(int argc, char *argv[])
   while(1)
   {
     count ++;
-    pi = cal_pai();
+    pi = cal_pi();
     printf("While task1! count : %ld,pi = %.10lf\n",count,pi);
   }
   return 0;
@@ -80,7 +80,7 @@ static int while2_entry(int argc, char *argv[])
   while(1)
   {
     count ++;
-    pi = cal_pai();
+    pi = cal_pi();
     printf("While task2! count : %ld,pi = %.10lf\n",count,pi);
   }
   return 0;
@@ -131,7 +131,7 @@ int main(int argc, FAR char *argv[])
 
     random_time = (uint32_t)nrand(5000);
 
-    pi = cal_pai();
+    pi = cal_pi();
     printf("main_task :count = %ld,pi = %.10lf\n", count,pi);
     printf("Sleep time: %ld ms\n",random_time);
     usleep(random_time*1000);
