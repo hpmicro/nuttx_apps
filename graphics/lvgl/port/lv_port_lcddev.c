@@ -180,6 +180,7 @@ static FAR lv_disp_t *lcddev_init(int fd,
   lcddev_obj->disp_drv.hor_res = hor_res;
   lcddev_obj->disp_drv.ver_res = ver_res;
   lcddev_obj->disp_drv.screen_transp = false;
+  lcddev_obj->area.stride = 0;
 #if ( LV_USE_USER_DATA != 0 )
   lcddev_obj->disp_drv.user_data = lcddev_obj;
 #else
