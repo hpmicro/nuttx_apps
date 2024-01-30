@@ -52,8 +52,13 @@ struct netlib_recvfrom_response_s
   struct nlmsghdr  hdr;
   struct ifinfomsg iface;
   struct rtattr    attr;
-  uint8_t          data[IFNAMSIZ];  /* IFLA_IFNAME is the only attribute
-                                     * supported */
+  uint32_t         mtu;                         /* IFLA_MTU attribute */
+#if defined(CONFIG_NET_ETHERNET) || defined(CONFIG_NET_TUN)
+  struct rtattr    attraddr;
+  uint8_t          mac[NLMSG_ALIGN(ETH_ALEN)];  /* IFLA_ADDRESS attribute */
+#endif
+  struct rtattr    attrname;
+  uint8_t          data[IFNAMSIZ];              /* IFLA_IFNAME attribute */
 };
 
 /****************************************************************************
