@@ -37,6 +37,12 @@
 #define CONFIG_WHILE2_PRIORITY 103
 #define CONFIG_WHILE2_STACKSIZE 2048
 
+#if defined(CONFIG_ARCH_HAVE_DPFPU)
+#define fpu_define double
+#else
+#define fpu_define float
+#endif
+
 /****************************************************************************
  * Public Functions
  ****************************************************************************/
@@ -44,15 +50,15 @@
 /****************************************************************************
  * fpu_test_main
  ****************************************************************************/
-static double cal_pi(void)
+static fpu_define cal_pi(void)
 {
-  double r =0;
-  double sum =0;
+  fpu_define r =0;
+  fpu_define sum =0;
   uint32_t i =0;
   for(i=0;i<1000000;i++)
   {
 
-    r = ((i & 1) ? (double)-1.0: (double)1.0)/(2*i+1);
+    r = ((i & 1) ? (fpu_define)-1.0: (fpu_define)1.0)/(2*i+1);
     sum = sum + r;
   }
   return sum * 4.0;
@@ -60,7 +66,7 @@ static double cal_pi(void)
 
 static int while1_entry(int argc, char *argv[])
 {
-  double pi =0;
+  fpu_define pi =0;
   uint32_t count =0;
   printf("Enter while task1!\n");
   while(1)
@@ -74,7 +80,7 @@ static int while1_entry(int argc, char *argv[])
 
 static int while2_entry(int argc, char *argv[])
 {
-  double pi =0;
+  fpu_define pi =0;
   uint32_t count =0;
   printf("Enter while task2!\n");
   while(1)
@@ -89,7 +95,7 @@ static int while2_entry(int argc, char *argv[])
 int main(int argc, FAR char *argv[])
 {
   uint32_t count =0;
-  double pi =0;
+  fpu_define pi =0;
   int ret;
   uint32_t random_time =0;
 
