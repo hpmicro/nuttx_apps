@@ -37,6 +37,10 @@
 
 #include "netutils/netlib.h"
 
+#ifndef ETH_ALEN
+#define ETH_ALEN           6
+#endif
+
 #ifdef CONFIG_NETLINK_ROUTE
 
 /****************************************************************************
